@@ -1,5 +1,5 @@
 $(function () {
-  // ===================================  登录 && 注册功能  ===================================
+  // ===================================  登录注册功能  ===================================
 
   // 去注册账号
   $("#gotoRegi").click(function () {
@@ -17,11 +17,9 @@ $(function () {
     $(".loginBox").show();
   });
 
-  // ===================================  表单自定义校验规则  ===================================
+  // ===================================  表单校验规则  ===================================
   // 表示从layui中获取到form相关功能（表单校验）以下代码不能落下，否则form.verify 会无法使用，报错
   let form = layui.form;
-
-  // 表单自定义校验规则
   form.verify({
     // 我们既支持上述函数式的方式，也支持下述数组的形式
     // 数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
@@ -56,24 +54,14 @@ $(function () {
 
     // 收集表单的数据
     let data = $(this).serialize();
-    // console.log(data);
-
     // 发送ajax请求，实现注册用户功能
-    // $.ajax()
-
-    // axios
-    // axios.post("http://ajax.frontend.itheima.net/api/reguser"); // 目前该根路径已经出问题，请更换
     axios
       .post("http://api-breakingnews-web.itheima.net/api/reguser", data)
       .then((res) => {
-        // console.log(res);
-
-        // 实现弹框 layer.msg("只想弱弱提示");
         if (res.data.status !== 0) {
           // 注册失败
           return layer.msg(res.data.message);
         }
-
         // 注册成功
         layer.msg("注册成功，请登录");
 
