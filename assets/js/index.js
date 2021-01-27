@@ -7,7 +7,6 @@ function getUserInfo() {
       },
     })
     .then((res) => {
-      console.log(res);
       if (res.data.status !== 0) {
         // 获取用户信息失败
         return layer.msg("获取用户信息失败");
